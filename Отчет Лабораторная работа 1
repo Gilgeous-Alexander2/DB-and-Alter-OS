@@ -37,9 +37,9 @@ sudo nano /etc/postgresql/15/main/postgresql.conf
 
 ### 8) Использование утилиты psql для базовых операций 
 CREATE TABLE public.mytable (ID SERIAL PRIMARY KEY, Name VARCHAR (100)); - создание таблицы с двумя полями: id и Name
-UPDATE public.tmyable SET Name = ’aoaoa’ WHERE id = 3; - обновление инфы
-INSERT INTO public.metable VALUES (id = 1, Name = ‘aoaoao’), (id = 2, Name = ‘aoaoao’);
-SELECT * FROM public.mytable; - вывести все из таблицы mytable в схеме public
+UPDATE public.tmyable SET Name = ’aoaoa’ WHERE id = 3; - изменение информации в таблице где id = 3
+INSERT INTO public.metable VALUES (id = 1, Name = ‘aoaoao’), (id = 2, Name = ‘aoaoao’); - добавление новых полей в таблицу
+SELECT * FROM public.mytable; - вывести все поля из таблицы mytable в схеме public
 DELETE ALL FROM public.mytable WHERE id = 2 OR name = ‘aoaoao’; – удалить строки из таблицы mytable  в схеме public, где id = 2 или name = ‘aoaoao’
 
 ### 9) Настройка локальных и сетевых подключений 
@@ -50,9 +50,9 @@ logging_collector – делает логирование удобнее и ка
 log_directory – директория логов
 
 ### 11)  Назначение ролей и прав
-Назначение прав для limited_user1(от лица postgres естественно) Grant select on public.mytable to limited_user1;
+Назначение прав для limited_user1(от лица postgres): Grant select on public.mytable to limited_user1;
 Вход в датабазу postgres: psql –h localhost –p 5433 –U limited_user1 –d postgres;
-Создание роли и назначение ей прав CREATE ROLE read_write_role;
+Создание роли и назначение ей прав: CREATE ROLE read_write_role;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.mytable TO read_write_role;
-Наследование прав от олной роли к другой GRANT read_write_role TO limited_user;
+Наследование прав от олной роли к другой: GRANT read_write_role TO limited_user;
 Set role limited user;
